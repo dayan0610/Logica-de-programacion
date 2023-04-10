@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Años de los mundiales</title>
+</head>
+<body>
+  <h1>Años de los mundiales</h1>
+
+  <p>Los años de los mundiales que se llevaron a cabo en el rango especificado son:</p>
+  <ul id="mundiales-filtrados"></ul>
+
+  <script>
+    const inicio = parseInt(prompt('Ingrese el año de inicio del rango:'));
+    const fin = parseInt(prompt('Ingrese el año final del rango:'));
+
+    const mundialesFiltrados = [];
+    for (let i = 1930; i <= 2022; i += 4) {
+      if (i >= inicio && i <= fin) {
+        mundialesFiltrados.push(i);
+      }
+    }
+
+    const listaMundialesFiltrados = document.getElementById('mundiales-filtrados');
+    for (let i = 0; i < mundialesFiltrados.length; i++) {
+      const li = document.createElement('li');
+      li.textContent = mundialesFiltrados[i];
+      listaMundialesFiltrados.appendChild(li);
+    }
+  </script>
+</body>
+</html>
