@@ -1,0 +1,46 @@
+<meta charset="UTF-8">
+
+<h1>PROGRAMA CALCULO IMC</h1>
+
+<script>
+
+	function saltarLinea() {
+		document.write("<br>");	
+		document.write("<br>");	
+		document.write("<br>");	
+	}  
+
+	function imprimir(frase) {
+		document.write(frase);
+		saltarLinea();
+	}
+
+	function calcularImc(peso, altura, nombre) {
+          // Calculamos el IMC
+          var imc = peso / (altura * altura);
+          
+          // Imprimimos en pantalla el resultado del cálculo del IMC y lo retornamos
+          imprimir(nombre + ", tu IMC es: " + imc.toFixed(2));
+          return imc;
+	}
+
+	// Solicitamos al usuario los datos necesarios
+	var nombre = prompt("Ingresa tu nombre:");
+	var peso = parseFloat(prompt(nombre + ", Ingresa tu peso en kilogramos:"));
+	var altura = parseFloat(prompt("Ingresa tu altura en metros:"));
+
+	// Calculamos el IMC y lo imprimimos en pantalla
+	var imc = calcularImc(peso, altura, nombre);
+
+	// Verificamos el rango del IMC y mostramos un mensaje correspondiente
+	if (imc < 18.5) {
+		imprimir("Tienes un peso inferior al normal.");
+	} else if (imc < 25) {
+		imprimir("Tienes un peso normal.");
+	} else if (imc < 30) {
+		imprimir("Tienes sobrepeso.");
+	} else {
+		imprimir("Tienes obesidad.");
+	}
+
+</script>

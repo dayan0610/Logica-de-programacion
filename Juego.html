@@ -1,0 +1,41 @@
+<meta charset="UTF-8">
+
+<h1>PROGRAMA PARA ADIVINAR UN NÚMERO ALEATORIO</h1>
+
+<script>
+
+    function saltarLinea() {
+        document.write("<br>");
+        document.write("<br>");
+        document.write("<br>");
+    }
+
+    function imprimir(frase) {
+        document.write(frase);
+        saltarLinea();
+    }
+
+    function jugar() {
+        var minimo = 1;
+        var maximo = 10;
+        var numeroAleatorio = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
+
+        imprimir("Estoy pensando en un número del 1 al 10. Adivina cuál es.");
+
+        var respuesta = prompt("¿Cuál crees que es el número que estoy pensando?");
+
+        if (isNaN(respuesta) || respuesta < minimo || respuesta > maximo) {
+            imprimir("Lo siento, no es un número válido. Por favor, introduce un número del 1 al 10.");
+        } else if (respuesta == numeroAleatorio) {
+            imprimir("¡Felicidades, has adivinado el número " + numeroAleatorio + "!");
+        } else {
+            imprimir("Lo siento, el número que estaba pensando era " + numeroAleatorio + ".");
+        }
+    }
+
+    jugar();
+
+</script>
+
+
+

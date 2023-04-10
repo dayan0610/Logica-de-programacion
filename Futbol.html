@@ -1,0 +1,42 @@
+<meta charset="UTF-8">
+
+<h1>PROGRAMA PARA CALCULAR LOS PUNTOS DE UN EQUIPO DE FUTBOL</h1>
+
+<script>
+
+	function saltarLinea() {
+		document.write("<br>");	
+		document.write("<br>");	
+		document.write("<br>");	
+	}  
+
+	function imprimir(frase) {
+		document.write(frase);
+		saltarLinea();
+	}
+
+	var victorias = parseInt(prompt("Informe la cantidad de victorias"));
+	var empates = parseInt(prompt("Informe la cantidad de empates"));
+
+	var puntosVictorias = victorias * 3;
+	var puntosEmpates = empates * 1;
+
+	var puntosTotales = puntosVictorias + puntosEmpates;
+
+	var puntosAnteriores = parseInt(prompt("Ingrese la puntuación del equipo en el año anterior"));
+
+	imprimir("El equipo ganó " + victorias + " partidos y obtuvo " + puntosVictorias + " puntos por victorias.");
+	imprimir("El equipo empató " + empates + " partidos y obtuvo " + puntosEmpates + " puntos por empates.");
+	imprimir("El total de puntos del equipo es: " + puntosTotales);
+
+	if (puntosTotales > puntosAnteriores) {
+		var diferencia = puntosTotales - puntosAnteriores;
+		imprimir("El equipo mejoró su desempeño con respecto al año anterior. La diferencia es de " + diferencia + " puntos.");
+	} else if (puntosTotales < puntosAnteriores) {
+		var diferencia = puntosAnteriores - puntosTotales;
+		imprimir("El equipo tuvo un desempeño inferior al año anterior. La diferencia es de " + diferencia + " puntos.");
+	} else {
+		imprimir("El equipo mantuvo su desempeño del año anterior.");
+	}
+
+</script>
