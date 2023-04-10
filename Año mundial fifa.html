@@ -15,17 +15,21 @@
     const fin = parseInt(prompt('Ingrese el año final del rango:'));
 
     const mundialesFiltrados = [];
-    for (let i = 1930; i <= 2022; i += 4) {
+    let i = 1930;
+    while (i <= 2022) {
       if (i >= inicio && i <= fin) {
         mundialesFiltrados.push(i);
       }
+      i += 4;
     }
 
     const listaMundialesFiltrados = document.getElementById('mundiales-filtrados');
-    for (let i = 0; i < mundialesFiltrados.length; i++) {
+    let j = 0;
+    while (j < mundialesFiltrados.length) {
       const li = document.createElement('li');
-      li.textContent = `Hubo mundial de la FIFA en el año ${mundialesFiltrados[i]}`;
+      li.textContent = `Hubo mundial de la FIFA en el año ${mundialesFiltrados[j]}`;
       listaMundialesFiltrados.appendChild(li);
+      j++;
     }
   </script>
 </body>
