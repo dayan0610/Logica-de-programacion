@@ -1,0 +1,28 @@
+<meta charset="UTF-8">
+
+<h1>PROGRAMA - CALCULAR LA TABLA DE MULTIPLICAR </h1>
+
+<body>
+	<h1>Tablas de Multiplicar</h1>
+
+	<script>
+		var tabla = parseInt(prompt("Ingrese el número de tabla de multiplicar que desea generar:"));
+
+		if (isNaN(tabla) || tabla < 1) {
+			alert("Por favor, ingrese un número válido mayor a 0.");
+		} else {
+			document.write("<table>");
+
+			for (var i = 1; i <= 10; i++) {
+				if (tabla * i > 10) {
+					break;
+				}
+				document.write("<tr>");
+				document.write("<td>" + tabla + " x " + i + " = </td>");
+				document.write("<td>" + tabla * i + "</td>");
+				document.write("</tr>");
+			}
+
+			document.write("</table>");
+		}
+	</script>
