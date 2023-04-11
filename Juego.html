@@ -4,7 +4,7 @@
 
 <script>
 
-    function saltarLinea() {
+   function saltarLinea() {
         document.write("<br>");
         document.write("<br>");
         document.write("<br>");
@@ -19,17 +19,28 @@
         var minimo = 1;
         var maximo = 10;
         var numeroAleatorio = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
-
+        var intentos = 10;
+        
         imprimir("Estoy pensando en un número del 1 al 10. Adivina cuál es.");
 
-        var respuesta = prompt("¿Cuál crees que es el número que estoy pensando?");
+        while (intentos > 0) {
+            var respuesta = prompt("Intentos restantes: " + intentos + ". ¿Cuál crees que es el número que estoy pensando?");
 
-        if (isNaN(respuesta) || respuesta < minimo || respuesta > maximo) {
-            imprimir("Lo siento, no es un número válido. Por favor, introduce un número del 1 al 10.");
-        } else if (respuesta == numeroAleatorio) {
-            imprimir("¡Felicidades, has adivinado el número " + numeroAleatorio + "!");
-        } else {
-            imprimir("Lo siento, el número que estaba pensando era " + numeroAleatorio + ".");
+            if (isNaN(respuesta) || respuesta < minimo || respuesta > maximo) {
+                imprimir("Lo siento, no es un número válido. Por favor, introduce un número del 1 al 10.");
+            } else if (respuesta == numeroAleatorio) {
+                imprimir("¡Felicidades, has adivinado el número " + numeroAleatorio + "!");
+                break;
+            } else {
+                intentos--;
+                if (intentos > 0) {
+                    prompt("Lo siento, ese no es el número que estaba pensando. Intentos restantes: " + intentos + ".");
+                }
+            }
+        }
+
+        if (intentos == 0) {
+            imprimir("Lo siento, has agotado todos tus intentos. El número que estaba pensando era " + numeroAleatorio + ".");
         }
     }
 
