@@ -1,52 +1,52 @@
 <meta charset="UTF-8">
 
-<h1>PROGRAMA PARA ADIVINAR UN NÚMERO ALEATORIO</h1>
+<input/>
+<button>Verificar si acertó con el secreto</button>
 
 <script>
+    var cantidadSecretos = 4;
+    var secretos = generarSecretos(cantidadSecretos);
+    var input = document.querySelector("input");
+    input.focus();
 
-   function saltarLinea() {
-        document.write("<br>");
-        document.write("<br>");
-        document.write("<br>");
-    }
-
-    function imprimir(frase) {
-        document.write(frase);
-        saltarLinea();
-    }
-
-    function jugar() {
-        var minimo = 1;
-        var maximo = 10;
-        var numeroAleatorio = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
-        var intentos = 10;
-        
-        imprimir("Estoy pensando en un número del 1 al 10. Adivina cuál es.");
-
-        while (intentos > 0) {
-            var respuesta = prompt("Intentos restantes: " + intentos + ". ¿Cuál crees que es el número que estoy pensando?");
-
-            if (isNaN(respuesta) || respuesta < minimo || respuesta > maximo) {
-                imprimir("Lo siento, no es un número válido. Por favor, introduce un número del 1 al 10.");
-            } else if (respuesta == numeroAleatorio) {
-                imprimir("¡Felicidades, has adivinado el número " + numeroAleatorio + "!");
-                break;
-            } else {
-                intentos--;
-                if (intentos > 0) {
-                    prompt("Lo siento, ese no es el número que estaba pensando. Intentos restantes: " + intentos + ".");
-                }
+    function generarSecretos(cantidad) {
+        var secretos = [];
+        var numero;
+        while (secretos.length < cantidad) {
+            numero = Math.floor(Math.random() * 10) + 1;
+            if (secretos.indexOf(numero) == -1) {
+                secretos.push(numero);
             }
         }
-
-        if (intentos == 0) {
-            imprimir("Lo siento, has agotado todos tus intentos. El número que estaba pensando era " + numeroAleatorio + ".");
-        }
+        return secretos;
     }
 
-    jugar();
+    function verificar() {
+        var encontrado = false;
+        var intento = parseInt(input.value);
+        for (var i = 0; i < secretos.length; i++) {
+            if (intento == secretos[i]) {
+                alert("Usted acertó el número " + secretos[i] + "!");
+                encontrado = true;
+                break;
+            } else if (intento < secretos[i]) {
+                alert("El número secreto es mayor que " + intento + ".");
+                break;
+            } else if (intento > secretos[i] && i == secretos.length - 1) {
+                alert("El número secreto es menor que " + intento + ".");
+                break;
+            }
+        }
+        if (encontrado == false) {
+            alert("Lo siento, no adivinaste ninguno de los números secretos.");
+        }
+        input.value = "";
+        input.focus();
+    }
 
+    var button = document.querySelector("button");
+    button.onclick = verificar;
 </script>
 
-
-
+<input type="number" placeholder="Escriba un número">
+<button>Adivinar</button>
