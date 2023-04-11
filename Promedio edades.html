@@ -1,0 +1,37 @@
+<meta charset="UTF-8">
+
+<h1>PROGRAMA - CALCULAR LA TABLA DE MULTIPLICAR </h1>
+
+<body>
+	<h1>Tablas de Multiplicar</h1>
+
+	<script>
+		var edades = [];
+		var total = 0;
+		var media = 0;
+
+		var cantidad = parseInt(prompt("Ingrese la cantidad de miembros de la familia:"));
+
+		if (isNaN(cantidad) || cantidad < 1) {
+			alert("Por favor, ingrese un número válido mayor a 0.");
+		} else {
+			for (var i = 1; i <= cantidad; i++) {
+				var edad = parseInt(prompt("Ingrese la edad del miembro " + i + ":"));
+
+				if (isNaN(edad) || edad < 1) {
+					alert("Por favor, ingrese una edad válida mayor a 0.");
+					i--;
+				} else {
+					edades.push(edad);
+				}
+			}
+
+			for (var i = 0; i < edades.length; i++) {
+				total += edades[i];
+			}
+
+			media = total / edades.length;
+
+			document.write("<p>La edad media de la familia es: " + media.toFixed(2) + "</p>");
+		}
+	</script>
