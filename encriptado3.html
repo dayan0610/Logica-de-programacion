@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Encriptador</title>
+  <style>
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    
+    textarea {
+      border: solid 2px blue;
+      color: blue;
+      font-size: 24px;
+    }
+
+    select {
+      margin-bottom: 10px;
+    }
+
+    button {
+      margin-bottom: 10px;
+      padding: 10px 20px;
+      background-color: #FFD27D;
+      border: none;
+      font-size: 18px;
+      font-weight: bold;
+      color: #darkred;
+    }
+
+    #result {
+      margin-top: 10px;
+      border: solid 2px blue;
+      color: blue;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div style="width: 500px; margin: 0 auto;">
+    <label for="text">Texto:</label>
+    <textarea id="text" rows="4" cols="50"></textarea>
+
+    <br>
+    <label for="option">Opción:</label>
+    <select id="option">
+      <option value="encrypt">Encriptar</option>
+      <option value="decrypt">Desencriptar</option>
+    </select>
+    <br>
+    <button onclick="transformText()">Transformar</button>
+    <br>
+    <label for="result">Resultado:</label>
+    <textarea id="result" rows="4" cols="50"></textarea>
+    <button onclick="copyToClipboard()">Copiar</button>
+  </div>
+  <script>
+    function transformText() {
+      const text = document.getElementById("text").value.toLowerCase();
+      const option = document.getElementById("option").value;
+      let result = "";
+
+      if (option === "encrypt") {
+        result = encryptText(text);
+      } else if (option === "decrypt") {
+        result = decryptText(text);
+      }
+
+      document.getElementById("result").value = result;
+    }
+
+    function encryptText(text) {
+      let result = "";
+
+      for (let i = 0; i < text.length; i++) {
+        switch (text[i]) {
+          case "e":
+            result += "enter";
+            break;
+          case "i":
+            result += "imes";
+            break;
+          case "a":
+            result += "ai";
+            break;
+          case "o":
+            result += "ober";
+            break;
+          case "u":
+            result += "ufat";
+            break;
+          default:
+            result += text[i];
+        }
+      }
+
+      return result;
+    }
+
+    function decryptText(text) {
+      let result = "";
+      let i = 0;
+
+     while (i < text.length) {
+        if (text.substring(i, i + 5) === "enter") {
+          result += "e";
+          i += 5;
+        } else if (text.substring(i, i + 4) === "imes") {
+          result += "i";
+          i += 4;
+        } else if (text.substring(i, i + 2) === "ai") {
+          result += "a";
+          i += 2;
+        } else if (text.substring(i, i + 4) === "ober") {
+          result += "o";
+          i += 4;
+        } else if (text.substring(i, i + 4) === "ufat") {
+          result += "u";
+          i += 4;
+        } else {
+          result += text[i];
+          i++;
+        }
+      }
+
+      return result;
+    }
+
+    function copyToClipboard() {
+      const result = document.getElementById("result");
+      result.select();
+      document.execCommand("copy");
+    }
+  </script>
+</body>
+</html>
